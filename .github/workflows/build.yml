@@ -18,18 +18,13 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git zip unzip python3-pip libsqlite3-dev
-          pip install buildozer cython
+          pip install buildozer==1.5.0 cython==0.29.33
           pip install git+https://github.com/kivy/python-for-android.git
-      - name: setup android sdk
+      - name: pre-download setup android
         run: |
-          mkdir -p $HOME/.buildozer/android/platform/android-sdk
-          cd $HOME/.buildozer/android/platform
-          wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip commandlinetools-linux-11076708_latest.zip
-          mkdir -p android-sdk/cmdline-tools/latest
-          mv cmdline-tools/* android-sdk/cmdline-tools/latest/
-          yes | android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-          android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          export ANDROID_SDK_ROOT=$HOME/.buildozer/android/platform/android-sdk
+          mkdir -p ANDROID_SDK_ROOT
+          buildozer android clean
         env:
           ANDROID_SDK_ROOT: $HOME/.buildozer/android/platform/android-sdk
       - name: Build APK
