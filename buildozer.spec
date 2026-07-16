@@ -11,6 +11,5 @@ android.minapi = 21
 android.archs = arm64-v8a
 android.build_tools = 34.0.0
 p4a.branch = develop
-
 [buildozer]
 log_level = 2
