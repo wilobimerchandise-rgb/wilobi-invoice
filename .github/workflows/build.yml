@@ -12,14 +12,12 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip libsqlite3-dev
           pip install buildozer cython
-      - name: Accept Android Licenses
-        run: |
-          yes | sudo sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
       - name: Build with Buildozer
-        run: buildozer android debug
+        run: buildozer -v android debug
+        env:
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
