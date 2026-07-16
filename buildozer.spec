@@ -6,7 +6,8 @@ source.dir =.
 version = 0.1
 requirements = python3,kivy==2.2.1,pillow,sqlite3
 orientation = portrait
-android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
+android.accept_sdk_license = True
+android.sdk_path =
 android.api = 34
 android.minapi = 21
 android.archs = arm64-v8a
