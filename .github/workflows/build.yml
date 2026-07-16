@@ -19,10 +19,9 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip python3-pip libsqlite3-dev
           pip install buildozer cython          
-      - name: Setup Android SDK
+      - name: install python-for-android first
         run: |
-          mkdir -p $HOME/.buildozer/android/platform
-          buildozer android clean
+          pip install git+https://github.com/kivy/python-for-android.git
       - name: Build APK
         run: buildozer -v android debug        
       - name: Upload APK
